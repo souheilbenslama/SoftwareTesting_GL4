@@ -34,21 +34,21 @@ class EncodePage(tk.Frame):
 
         # Coding button
         menu1_text = tk.StringVar()
-        menu1_btn = tk.Button(self, command=lambda: self.encode(T, output, output_text, "64"), textvariable=menu1_text,
+        menu1_btn = tk.Button(self, command=lambda: self.getencode(T, output, output_text, "64"), textvariable=menu1_text,
                               font=("Anonymous Pro", 14), bg="#57B947", fg="black", width=10)
         menu1_text.set("Base 64")
         menu1_btn.grid(column=0, row=2)
 
         # Decoding button
         menu2_text = tk.StringVar()
-        menu2_btn = tk.Button(self, command=lambda: self.encode(T, output, output_text, "32"), textvariable=menu2_text,
+        menu2_btn = tk.Button(self, command=lambda: self.getencode(T, output, output_text, "32"), textvariable=menu2_text,
                               font=("Anonymous Pro", 14), bg="#57B947", fg="black", width=10)
         menu2_text.set("Base 32")
         menu2_btn.grid(column=1, row=2)
 
         # Decoding button
         menu3_text = tk.StringVar()
-        menu3_btn = tk.Button(self, command=lambda: self.encode(T, output, output_text, "16"), textvariable=menu3_text,
+        menu3_btn = tk.Button(self, command=lambda: self.getencode(T, output, output_text, "16"), textvariable=menu3_text,
                               font=("Anonymous Pro", 14), bg="#57B947", fg="black", width=10)
         menu3_text.set("Base 16")
         menu3_btn.grid(column=2, row=2)
@@ -60,23 +60,15 @@ class EncodePage(tk.Frame):
         quit_text.set("Return")
         quit_btn.grid(columnspan=3, row=4)
 
-    def encode(self, input, out, out_text, type):
+    def getencode(self, input, out, out_text, type):
         message = input.get("1.0", "end-1c")
+        out.delete(1.0, "end")
+        out.insert(1.0, encode(input,type))
 
+def encode(input, type):
         if (type == "64"):
-            out_text.config(text="Base 64 :")
-            output = base64.b64encode(message.encode()).decode()
-            out.delete(1.0,"end")
-            out.insert(1.0,output)
-
+            return base64.b64encode(input.encode()).decode()
         if (type == "16"):
-            out_text.config(text="Base 16 :")
-            output = base64.b16encode(message.encode()).decode()
-            out.delete(1.0, "end")
-            out.insert(1.0, output)
-
+            return base64.b16encode(input.encode()).decode()
         if (type == "32"):
-            out_text.config(text="Base 32 :")
-            output = base64.b32encode(message.encode()).decode()
-            out.delete(1.0, "end")
-            out.insert(1.0, output)
+            return base64.b32encode(input.encode()).decode()

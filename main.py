@@ -79,7 +79,7 @@ class tkinterApp(tk.Tk):
         # startpage, page1, page2 respectively with
         # for loop
 
-        self.show_frame(0)
+        self.show_frame(2)
 
     # to display the current frame passed as
     # parameter

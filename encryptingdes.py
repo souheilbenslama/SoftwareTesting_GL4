@@ -42,7 +42,7 @@ class EncryptingDES(tk.Frame):
 
         # Encryption button
         menu3_text = tk.StringVar()
-        menu3_btn = tk.Button(self, command=lambda: self.encrypt(output,message.get("1.0", "end-1c"), key.get("1.0", "end-1c")),
+        menu3_btn = tk.Button(self, command=lambda: self.getencrypt(output,message.get("1.0", "end-1c"), key.get("1.0", "end-1c")),
                                                                  textvariable=menu3_text,
                                                                  font=("Anonymous Pro", 14), bg="#57B947", fg="black",
                                                                  width=10)
@@ -56,18 +56,25 @@ class EncryptingDES(tk.Frame):
         quit_text.set("Return")
         quit_btn.grid(columnspan=3, row=4)
 
-    def encrypt(self,output, message, key):
-        key = key.encode('ascii')
-        if len(key) < 16:
-            key = key + str.encode((16 - len(key)) * '\x00')
-        m = hashlib.md5(key)
-        key = m.digest()
-        (dk, iv) = (key[:8], key[8:])
-        cipher = DES.new(dk, DES.MODE_CBC, iv)
-        message += '\x00' * (8 - len(message) % 8)
-        ciphertext = cipher.encrypt(message.encode('ascii'))
-        encode_string = base64.b32encode(ciphertext)
+    def getencrypt(self,output, message, key):
         output.delete(1.0, "end")
-        output.insert(1.0, encode_string)
+        output.insert(1.0, encrypt(message,key))
+
+def encrypt(message , key ):
+    key = key.encode('ascii')
+    if len(key) < 16:
+        key = key + str.encode((16 - len(key)) * '\x00')
+    m = hashlib.md5(key)
+    key = m.digest()
+    (dk, iv) = (key[:8], key[8:])
+    print(dk)
+    print(iv)
+    cipher = DES.new(dk, DES.MODE_CBC, iv)
+    message += '\x00' * (8 - len(message) % 8)
+    ciphertext = cipher.encrypt(message.encode('ascii'))
+    print(base64.b32encode(ciphertext))
+    return base64.b32encode(ciphertext)
+
+
 
 
