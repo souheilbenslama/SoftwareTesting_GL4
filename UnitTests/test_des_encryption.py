@@ -2,7 +2,6 @@ import unittest
 
 from encryptingdes import encrypt
 
-
 class DesEncryptionTestCase(unittest.TestCase) :
     def test_DES_encryption(self) :
         #given
@@ -13,4 +12,5 @@ class DesEncryptionTestCase(unittest.TestCase) :
         result = encrypt(message,key)
         #then
         assert result== expectedoutput
+
 

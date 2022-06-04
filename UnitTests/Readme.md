@@ -39,4 +39,13 @@ Then we pass the mock object and override the return value of the get-user funct
         mocked_object().getuser.return_value=(1,"souheil","benslamasouheil@gmail.com","hellopassword")
  
   ```
+
+for some reason , when running test in cmd he can't find thet requested module . 
+but when leaving the virtual env and running 
   
+``` bash
+python -m pytest
+```
+
+it works fine
+![img.png](img.png)

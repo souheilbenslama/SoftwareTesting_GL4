@@ -28,16 +28,18 @@ class DAO:
     def __init__(self):
 
         self.db = DataBaseConnection.getConnection(
-            host="localhost",
-            user="root",
-            password="",
-            database="ssi")
+            host="remotemysql.com",
+            user="4gJGoceqrp",
+            password="wc04jj8Oro",
+            database="4gJGoceqrp")
 
     def createTable(self):
         # faire quelque chose d'utile avec la connexion
         with self.db.cursor() as c:
+
+
             c.execute(
-                "create table users (id  integer PRIMARY KEY AUTO_INCREMENT , nom varchar(50) NOT NULL , prenom  varchar(50),email varchar(50) NOT NULL UNIQUE ,numero varchar(8) NOT NULL , password varchar(256) NOT NULL ,  code varchar(6)  );"
+                "create table users (id  integer PRIMARY KEY AUTO_INCREMENT , nom varchar(50) NOT NULL , prenom  varchar(50),email varchar(50) NOT NULL UNIQUE ,numero varchar(8) NOT NULL , password varchar(256) NOT NULL ,  code varchar(6)  DEFAULT NULL );"
             )
             c.execute(
                 "create table clepubs (id  integer PRIMARY KEY AUTO_INCREMENT , nom varchar(50) NOT NULL , clepub varchar(50) NOT NULL );"

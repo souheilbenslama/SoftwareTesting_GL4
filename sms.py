@@ -15,13 +15,13 @@ load_dotenv()
 print(account_sid)
 print(auth_token)
 
-client = Client(account_sid, auth_token)
+#client = Client(account_sid, auth_token)
 
 
-def send_verif(message, phone):
-    message = client.messages \
-        .create(
-        body=" your Pentracker verification code is : '%s' " % (message),
-        from_='+19147581161',
-        to='+216' + phone
-    )
+#def send_verif(message, phone):
+#    message = client.messages \
+#        .create(
+#        body=" your Pentracker verification code is : '%s' " % (message),
+#        from_='+19147581161',
+#        to='+216' + phone
+#    )

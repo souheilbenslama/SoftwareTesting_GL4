@@ -2,7 +2,7 @@ import random
 import tkinter as tk
 from PIL import ImageTk, Image
 from mail import send_email
-from sms import send_verif
+#from sms import send_verif
 from dbconnection import DAO
 from homepage import HomePage
 from registerpage import RegisterPage
@@ -78,7 +78,7 @@ class LoginPage(tk.Frame):
                 code = random.choice(range(100000, 999999))
                 dao.update_verifcode(email.get(),code)
                 send_email(code, user[3])
-                send_verif(code, user[4])
+               # send_verif(code, user[4])
                 controller.set_email(user[3])
                 controller.show_frame(10)
         except Exception as e:
@@ -86,5 +86,21 @@ class LoginPage(tk.Frame):
             print(e)
             error_label.config(text=e)
 
+
+
+
     def register(self, controller):
         controller.show_frame(1)
+
+
+
+
+def get_username( email):
+        dao = DAO()
+        try:
+            user = dao.getuser(email)
+            return user[1]
+
+        except Exception as e:
+            print("exception")
+            print(e)
