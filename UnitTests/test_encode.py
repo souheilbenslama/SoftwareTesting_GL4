@@ -34,8 +34,6 @@ class EncodeDecodeTestCase(unittest.TestCase) :
         #then
         assert result==expectedoutput
 
-
-
     def test_Decode_64(self) :
         #given
         input = "d2F0ZXI="
