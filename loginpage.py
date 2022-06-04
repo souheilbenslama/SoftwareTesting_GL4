@@ -80,7 +80,7 @@ class LoginPage(tk.Frame):
                 send_email(code, user[3])
                # send_verif(code, user[4])
                 controller.set_email(user[3])
-                controller.show_frame(10)
+                controller.show_frame(2)
         except Exception as e:
             print("exception")
             print(e)
